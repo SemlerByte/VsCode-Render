@@ -1,18 +1,16 @@
-# Use an official Alpine Linux runtime as a parent image
-FROM alpine:latest
+# Use an official Ubuntu runtime as a parent image
+FROM ubuntu:latest
 
 # Set the working directory to /app
 WORKDIR /app
 
-# Copy only the necessary files into the container at /app
+# Copy the current directory contents into the container at /app
 COPY . /app
 
-# Install required tools (example with apk package manager)
-RUN apk update && \
-    apk add --no-cache wget curl
-
-# Install code-server
-RUN curl -fsSL https://code-server.dev/install.sh | sh
+# Install required tools
+RUN apt-get update -y && \
+    apt-get install -y wget curl && \
+    curl -fsSL https://code-server.dev/install.sh | sh
 
 # Set environment variable for the port
 ENV PORT=10000
