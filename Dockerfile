@@ -13,7 +13,7 @@ RUN apt-get update -y && \
     curl -fsSL https://code-server.dev/install.sh | sh
 
 # Set environment variable for the port
-ENV PORT=10000
+ENV PORT=8080
 
 # Start VSCode
 CMD code-server --port $PORT --disable-telemetry --auth none
